@@ -1,0 +1,86 @@
+explain master slave or why slave machined required?
+
+To distribute load  to different servers and also we can run specific job on specific server.
+for exapmle, I need to compile jave source code on the server which provides java environment.
+
+----------------------------------------- 
+
+# of executors: it indicates how many jobs we can run parallely on that node machine.
+
+label: To run jobs on available server. 
+
+assignment:
+when you push code to github, job should get triggered automatically and it should run on node machine.
+and configure label
+
+we have 15 nodes in the current project
+================================================================================================
+
+what kind of plugins you installed in jenkins ?
+
+1) parameterised plugin: used to pass parameters to jenkins job.
+At time of deployment, we need to pass two parameters one is server name and other one is build number.
+selected build will get deployed to selected server.
+
+2)gearman plugin:
+ It is a high availability plugin, if jenkin master goes down,other server will act as master
+German plugin will allow you to configure other server details. Both the server will be in sync. 
+if the master goes down other server will act as a master. 
+
+3)upstream and downstream plugins: used to pass output of one job to another and we can trgger one job after other.
+
+
+===========================================================================================================================
+explain CI/CD?
+once dev team pushes code to github, jenkins pipeline job will get triggered, it has 3 stages. build, deploy and test stages.
+in build stage, it will pull source code from github, compile and generates binary. once build stage is success, deploy stage will get triggered automatically,
+in deploy stage, war file will get deployed to tomcat server and runs BVT. once BVT is success, test stage will get triggered. 
+it runs test cases which are given by testing team. if there are any test failures, it will be taken care by test team. if there are any issues with integration, 
+we wil take care and fix it.
+
+=======================================================================================================================================================
+
+what kind of issues you faced ?
+
+build failures. once build is failed, we need to check why build is broken. if there are any compilation issues. we need to work dev team and get it fixed.
+if there are environment issues, we need to debug and fix it.
+environment issues can be
+1) slave is not available in the jenkins 
+2) cpu is high 
+3) memory is full
+==================================================================================
+ what kind deployment issues you faced? or what is challeging task you have done? 
+
+when I deploy build in QA  and UAT environment, it was working fine. when I  deployed the same in production environment, it was not working. 
+then I rolledback to previous build. production deployment didn't happen. I struggled a lot to fix this issue. I didn't know what to do. 
+Finally got to know that tomcat version is updated in QA and UAT. But prod is using old version of tomcat. so updated prod also to the same and deployed it.
+prod deployment went success.
+
+=============================================================================================================================================== 
+
+how do secure jenkins?
+
+we use matrix based security. Add user in matrix based security. it will allow to provide permission using checkboxes.
+which all permission you to provide, check those boxes.
+
+===============================================================================================================
+Assignment3:
+
+Secure jenkins using matrix based security.
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
